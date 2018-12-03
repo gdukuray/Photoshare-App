@@ -1,0 +1,28 @@
+<!doctype html>
+<title>Photoshare</title>
+
+{% if message %}
+<h4>{{message}}!</h4>
+{% endif %}
+
+<h1>Your Friends</h1>
+
+{% if friends %}
+<ul>
+    {% for friend in friends %}
+    <li>{{friend[0]}} {{friend[1]}}</li>
+    {% endfor %}
+</ul>
+<h4>Add Friends</h4>
+<a href="/findfriends">Go search your friends!</a><br />
+{% else %}
+<h3>You don't have any friends :( </h3>
+<a href="/findfriends"> Go Make Some Friends!</a><br />
+{% endif %}
+
+
+<ul>
+    <li><a href='/upload'>Upload a photo</a> </li>
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href='/'>Home</a></li>
+</ul>

@@ -1,0 +1,67 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% endif %}
+
+{% if message is none %}
+<p>You should <a href='/login'>login!</a></p>
+{% else %}
+<p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+
+{% if profilepic %}
+
+    <img src='data:image/png;base64, {{profilepic}}'/>
+
+{% endif %}
+
+<ul>
+    <li><a href='/upload'>Upload a photo</a> </li> 
+    <li><a href="/top10users">Top Users on photoshare</a></li>
+    <li><a href="/friends">Friends</a></li>
+    <li><a href="/albums">Your Albums</a></li>
+    <li><a href="/searchtags">Search Tags</a></li>
+    <li><a href="/populartags">Popular Tags</a></li>
+    <li><a href="/youmayalsolike/{{user}}">Recommended Tags for you</a></li>
+</ul>
+
+
+{% if photos %}
+<h2>Here's all the photos in photoshare</h2>
+<ul>
+    {% for photo in photos %}
+    <li>
+        <img src='data:image/png;base64, {{photo[1]}}' width="25%"/>
+        <h4>Caption: {{photo[2]}}</h4>
+        <a href="/tags/{{photo[0]}}">View Tags</a><br>
+        <a href="/comments/{{photo[0]}}">View Comments</a><br>
+        <a href="/likes/{{photo[0]}}">View Likes</a>
+        <br>
+        <br>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<br>
+<h1>Albums</h1>
+
+{% if albums %}
+    <h2>Here are all the albums in Photoshare</h2>
+    {% for album in albums %}
+    <li><a href="/photos/{{album[0]}}">{{album[1]}}<br /> by: {{album[2]}}</a><br /></li>
+    {% endfor %}
+{% endif %}
+
+
+<ul>
+<li><a href='/logout'>Logout</a></li>
+<li><a href='/'>Home</a></li>
+</ul>
+
+

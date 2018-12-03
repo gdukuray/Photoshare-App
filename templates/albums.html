@@ -1,0 +1,52 @@
+<!doctype html>
+<head>
+    <title>Photoshare</title>
+</head>
+<body>
+    {% if message %}
+    <h4>{{message}}!</h4>
+    {% endif %}
+
+    <h1>Your Albums</h1>
+
+    {% if albums %}
+    <ul>
+        {% for album in albums %}
+            <li>{{album[0]}}
+            
+            <form method="post" action="{{url_for('deletealbum', values=album[0])}}">
+                <input type="submit" name="Delete" value="Delete">
+                    </form><br>
+            {% if photos %}
+                <ul>
+                    {% for photo in photos %}
+                    <li>
+                        <img src='data:image/png;base64, {{photo[1]}}' width="25%" />
+                        <h4>Caption: {{photo[2]}}</h4>
+                        <a href="/tags/{{photo[0]}}">Tags</a>
+                        <form method="post" action="{{url_for('deletephoto', values=photo[0], album_name=albums)}}">
+                            <input type="submit" name="Delete" value="Delete">
+                                </form>
+                    </li><br>
+                    {% endfor %}
+                <ul/>
+                {% else %}
+                <h4>There are no photos in your album.</h4><br />
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    <h4><a href="/createalbum">Click Here to Create another Album.</a></h4>
+
+    {% else %}
+    <h3> You don't have any albums yet. <a href='/createalbum'>Click Here to Create One.</a></h3>
+    {% endif %}
+
+    <ul>
+        <li><a href='/upload'>Upload a photo</a> </li>
+        <li><a href='/logout'>Logout</a></li>
+        <li><a href='/'>Home</a></li>
+    </ul>
+</body>

@@ -1,0 +1,35 @@
+<head>
+    <title>Photoshare</title>
+</head>
+
+<body>
+    {% if message %}
+    <h2>{{message}}!</h2>
+    {% endif %}
+    
+    {% if albums %}
+    <h3>Here are the photos in {{albums}}</h3>
+    {% endif%}
+    
+    {% if photos %}
+    <ul>
+        {% for photo in photos %}
+        <li>
+            <img src='data:image/png;base64, {{photo[1]}}' width="25%" /><br />
+            <h4>Caption: {{photo[2]}}</h4>
+            <a href="/tags/{{photo[0]}}">Tags</a><br />
+            <br />
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <h4>There are no photos in this album.</h4><br />
+    {% endif %}
+    
+    <ul>
+        <li><a href='/upload'>Upload a photo</a> </li>
+        <li><a href='/logout'>Logout</a></li>
+        <li><a href='/'>Home</a></li>
+    </ul>
+    
+</body>

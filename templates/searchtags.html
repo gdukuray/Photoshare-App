@@ -1,0 +1,45 @@
+<!doctype html>
+<head>
+    <title>Photoshare</title>
+<head/>
+
+<body>
+        {% if message %}
+        <h4>{{message}}</h4>
+        {% endif %}
+        
+        <h1>Search Tags</h1>
+        
+        <form action="{{url_for('searchTags')}}" method="post">
+            <label for="search">Search for Some Tags</label><br>
+            <input type="text" name="search" /><br />
+            <input type="submit" value="Search">
+                </form>
+        
+        {% if results %}
+        <h4>Here are the tags you searched</h4>
+            {% for result in results%}
+                <li>{{result}}</li>
+            {% endfor %}
+        {% endif %}
+        
+        {% if photos %}
+        <h4>Here are the photos</h4>
+        <ul>
+            {% for photo in photos %}
+            <li>
+                <img src='data:image/png;base64, {{photo[0]}}' width="40%"/><br />
+                <h4>Caption: {{photo[1]}}</h4>
+                <h4>User: {{photo[2]}}</h4>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h4>There are no photos for this tag</h4>
+        {% endif %}
+        <ul>
+            <li><a href='/upload'>Upload a photo</a> </li>
+            <li><a href='/logout'>Logout</a></li>
+            <li><a href='/'>Home</a></li>
+        </ul>
+</body>

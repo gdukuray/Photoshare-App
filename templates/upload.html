@@ -1,0 +1,36 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<head>
+    <title>Photoshare</title>
+</head>
+    <body>
+        <div class="title">
+            <h1>Upload a photo to Photoshare</h1>
+        </div>
+            <form method="post" enctype="multipart/form-data" action="/upload">
+                <label for="photo">Select photo:</label>
+                <input type="file" name="photo" required='true' /><br />
+                <label for="album">Add to Album</label>
+                
+                {% if albums %}
+                <h2>Your Albums</h2>
+                <ul>
+                    {% for album in albums %}
+                    <input type="radio" name="name" value={{album[0]}}>{{album[1]}}<br />
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <h3> You don't have any albums yet. <a href='/createalbum'>Click Here to Create One.</a></h3>
+                {% endif %}
+                <label for="caption">Please caption:</label>
+                <input type="text" name="caption" required='true' /><br />
+                <label for="tag">Add Tags:</label>
+                <input type="text" name="tags" /><br />
+                <input type="submit" value="Upload" />
+            </form>
+            
+            <ul>
+                <li><a href='/upload'>Upload a photo</a> </li>
+                <li><a href='/logout'>Logout</a></li>
+                <li><a href='/'>Home</a></li>
+            </ul>
+    </body>

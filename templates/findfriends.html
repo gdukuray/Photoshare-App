@@ -1,0 +1,29 @@
+<!doctype html>
+<head>
+    <title>Photoshare</title>
+<head/>
+<body>
+    {% if message %}
+    <h4>{{message}}</h4>
+    {% endif %}
+
+    <h1>Search Your Friends</h1>
+
+    {% if Results %}
+    <ul>
+        {% for user in Results %}
+        <li>User email is: {{user[0]}} <br /> User first name is: {{user[1]}} <br /> User last name is: {{user[2]}} <br />User gender is: {{user[3]}} <br /></li>
+        <a href="{{url_for('newfriend', values = user[0])}}">Add Friend</a><br />
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <h4>Search for More Friends!</h4>
+    <form action="{{url_for('findfriends')}}" method="post">
+        <label for="f_firstname">Enter your friend's first name:</label>
+        <input type="search" name="f_firstname" /><br />
+        <label for="f_lastname">Enter your friend's last name:</label>
+        <input type="search" name="f_lastname" /><br />
+        <input type="submit" /><br />
+    </form>
+</body>

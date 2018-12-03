@@ -1,0 +1,28 @@
+<!doctype html>
+<head>
+    <title>Photoshare</title>
+</head>
+<body>
+    {% if message %}
+    <h4>{{message}}!</h4>
+    {% endif %}
+    
+    <h1>Photoshare Albums</h1>
+    
+    {% if albums %}
+        <ul>
+            {% for album in albums %}
+            <li><a href="/allalbums/{{album[0]}}">{{album[1]}}<br>
+                by {{album[2]}}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>There are no albums on Photoshare yet.</h3>
+    {% endif %}
+    
+    <ul>
+        <li><a href='/upload'>Upload a photo</a> </li>
+        <li><a href='/logout'>Logout</a></li>
+        <li><a href='/'>Home</a></li>
+    </ul>
+</body>
