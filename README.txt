@@ -1,8 +1,9 @@
-# Photo Share Application
-## Objective
-In my databases class, we were made to create a photosharing web application which would allow users to upload pictures, like others pictures, create albums, leave comments, and more. The functionality of the app is very similar to that of Flickr. 
+Photo Share Application
 
-## Database Design
+Objective
+This photosharing web application allows users to upload pictures, like others pictures, create albums, leave comments, and more. The functionality of the app is very similar to that of Flickr. 
+
+Database Design
 ### Users
 Each user is identiﬁed by a unique user id and has the following attributes: ﬁrst name, last name, email, date of birth, hometown, gender, and password. A user can have a number of Albums.
 
@@ -21,7 +22,7 @@ Each tag is described by a single word. Many photos can be tagged with the same 
 ### Comment
 Each comment is identiﬁed by a unique comment id and has the following attributes: text (i.e., the actual comment), the comment's owner (a user) and the date the comment was left.
 
-## Use Cases
+Use Cases
 ### User Management
 **Becoming a registered user.**
 Before being able to upload photos a user should register by providing their ﬁrst name, last name, email address, date of birth, and a password. If the user already exists in the database with the same email address an error message should be produced. The other additional information about each user is optional.
